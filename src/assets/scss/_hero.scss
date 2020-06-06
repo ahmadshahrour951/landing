@@ -1,0 +1,69 @@
+/* 
+// 06.Hero
+*/
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+// Hero 5
+.hero-5-bg {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  .hero-5-title {
+    font-size: 48px;
+  }
+  .bg-overlay {
+    opacity: 0.6;
+  }
+  .bg-hero-overlay {
+    background-image: url('../images/hero-5-overlay.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    opacity: 1;
+    @include overlay;
+  }
+}
+
+// ***** Responsive *****//
+@media (max-width: 576px) {
+  .hero-5-title {
+    font-size: 36px !important;
+  }
+}
+
+// @media (max-width: 768px) {
+//   .hero-1-bg {
+//     .w-75 {
+//       width: 100% !important;
+//     }
+//   }
+//   .hero-2-bg {
+//     padding: 130px 0 70px;
+//   }
+//   .hero-3-bg {
+//     padding: 130px 0 0px;
+//   }
+//   .hero-4-bg {
+//     padding: 140px 0 110px;
+//   }
+// }
+
+@media (max-width: 1024px) {
+  .hero-5-bg {
+    height: auto !important;
+    padding: 170px 0 130px;
+    .bg-hero-overlay {
+      background-image: none;
+      background: $gray-100;
+    }
+  }
+}
