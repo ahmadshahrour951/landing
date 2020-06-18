@@ -1,23 +1,3 @@
-<script>
-import {
-  SendIcon,
-  MailIcon,
-  LinkIcon,
-  PhoneCallIcon,
-  ClockIcon,
-  MapPinIcon,
-} from 'vue-feather-icons';
-export default {
-  components: {
-    SendIcon,
-    MailIcon,
-    LinkIcon,
-    PhoneCallIcon,
-    ClockIcon,
-    MapPinIcon,
-  },
-};
-</script>
 <template>
   <!-- Contact Us Start -->
   <section class="section bg-light" id="contact">
@@ -38,54 +18,7 @@ export default {
         <div class="col-lg-7">
           <div class="custom-form mb-5 mb-lg-0">
             <div id="message"></div>
-            <form name="contact-form" id="contact-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="name">Name*</label>
-                    <input
-                      id="name"
-                      type="text"
-                      class="form-control"
-                      placeholder="Your name..."
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="email">Email Address*</label>
-                    <input
-                      id="email"
-                      type="email"
-                      class="form-control"
-                      placeholder="Your email..."
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label for="comments">Message*</label>
-                    <textarea
-                      id="comments"
-                      rows="4"
-                      class="form-control"
-                      placeholder="Your message..."
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <button type="button" class="btn btn-primary">
-                    Send Message
-                    <send-icon class="icon-size-15 ml-2 icon"></send-icon>
-                  </button>
-                  <div id="simple-msg"></div>
-                </div>
-              </div>
-            </form>
+            <ContactForm v-model="contactForm" :handleSubmit="handleSubmit" />
           </div>
         </div>
         <div class="col-lg-5">
@@ -117,3 +50,72 @@ export default {
   </section>
   <!-- Contact Us End -->
 </template>
+
+<script>
+import {
+  SendIcon,
+  MailIcon,
+  LinkIcon,
+  PhoneCallIcon,
+  ClockIcon,
+  MapPinIcon,
+} from 'vue-feather-icons';
+import ContactForm from './forms/ContactForm';
+export default {
+  components: {
+    ContactForm,
+    SendIcon,
+    MailIcon,
+    LinkIcon,
+    PhoneCallIcon,
+    ClockIcon,
+    MapPinIcon,
+  },
+  data() {
+    return {
+      contactForm: {
+        value: {
+          email: null,
+          name: null,
+          message: null,
+        },
+        loading: false,
+        message: '',
+      },
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      this.contactForm.loading = true;
+
+      try {
+        if (this.contactForm.value.email) {
+          await this.$api.post('public/contact-us', this.contactForm.value);
+          this.contactForm.loading = false;
+          this.resetForm();
+          // this.contactForm.isSuccessful = true;
+          // this.contactForm.message =
+          //   'Please check your email to reset your password';
+        }
+      } catch (error) {
+        this.contactForm.loading = false;
+        this.contactForm.message =
+          error.message ||
+          error.response.data.message ||
+          (error.response && error.response.data);
+      }
+    },
+    resetForm() {
+      this.contactForm = {
+        value: {
+          email: null,
+          name: null,
+          message: null,
+        },
+        loading: false,
+        message: '',
+      };
+    },
+  },
+};
+</script>

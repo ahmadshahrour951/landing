@@ -66,7 +66,10 @@ export default {
                   <truck-icon class="icon-xs icon mr-1"></truck-icon>
                   Ambulance are directed to the least overwhelmed hospital
                 </p>
-                <a href="javascript: void(0);" class="btn btn-primary mt-4"
+                <a
+                  href="javascript: void(0);"
+                  class="btn btn-primary mt-4"
+                  v-scroll-to="{ el: '#contact', offset: -2 }"
                   >Get Started</a
                 >
               </div>

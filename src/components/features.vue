@@ -55,8 +55,8 @@ export default {
             </h3>
             <p class="text-muted text-justify font-size-15 mb-4">
               All hospitals would use this form. Only two personnel would have
-              the authority to input data about the ER room. Analytics about how
-              the ER is doing will be available to the hospital director. That
+              the authority to input data about the ER room. Analytics about the
+              ER's performance will be available to the hospital director. That
               data will be piped securely to the EMC dashboard.
             </p>
             <!-- <p class="text-muted mb-2">
@@ -102,8 +102,7 @@ export default {
               All Emergency Medical Centers would be able to see the state of
               each hospital on a map. That knowledge would be then be manifested
               into an informed decision. Saving patients time-to-treatment which
-              ultimately increases the probability of the patient's chance of
-              survival.
+              will increase the probability of the patient's chance of survival.
             </p>
             <!-- <p class="text-muted mb-2">
               <server-icon class="icon-xs mr-1"></server-icon>Donec pede justo

@@ -34,11 +34,12 @@
               We believe in creating a platform that works well while keeping it
               lean and simple. EMCs and Hospitals are the key stakeholders,
               hence we will ensure the platform meets their needs.
-              <a
-                href="javascript: void(0);"
+              <b-link
                 class="btn btn-outline-primary mt-4"
-                >Learn More</a
+                :to="{ name: 'About' }"
               >
+                Learn More
+              </b-link>
             </p>
           </div>
         </div>

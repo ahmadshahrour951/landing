@@ -6,7 +6,38 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
+    name: 'Main',
     component: () => import('../views/Main.vue'),
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue'),
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import('../views/Demo.vue'),
+    redirect: {
+      name: 'Map',
+    },
+    children: [
+      {
+        path: 'map',
+        name: 'Map',
+        component: () => import('../components/map.vue'),
+      },
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('../components/table.vue'),
+      },
+    ],
+  },
+  {
+    path: '/reset/:passwordToken',
+    component: () => import('../views/Reset.vue'),
+    name: 'Reset',
   },
 ];
 
